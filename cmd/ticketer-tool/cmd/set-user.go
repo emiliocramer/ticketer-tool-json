@@ -25,7 +25,7 @@ func setUser(name string, filename string) {
 
 	content, _ := GetEntireJson(file)
 
-	contains, index := ContainsUserAndPlace(content.Users, name)
+	contains, index, _ := ContainsUserAndPlace(content.Users, name)
 	if contains {
 		content.CurUser = content.Users[index]
 		out, _ := json.Marshal(content)

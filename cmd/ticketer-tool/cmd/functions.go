@@ -59,7 +59,7 @@ func WriteToJson(content AllStat, filename string) {
 // tells you arent, otherwise sets action
 func SetAction(name, filename string, content AllStat, action int) bool {
 
-	_, index := ContainsUserAndPlace(content.Users, name)
+	_, index, _ := ContainsUserAndPlace(content.Users, name)
 
 	if action == 2 {
 		if content.Users[index].Status == 0 {
@@ -86,11 +86,11 @@ func SetAction(name, filename string, content AllStat, action int) bool {
 
 // ContainsUserAndPlace iterates through a slice of Users searching for a specific User.name
 // Returns both whether the User.name is in there, and the index its found at
-func ContainsUserAndPlace(s []User, name string) (bool, int) {
+func ContainsUserAndPlace(s []User, name string) (bool, int, User) {
 	for x, y := range s {
 		if y.Name == name {
-			return true, x
+			return true, x, y
 		}
 	}
-	return false, 0
+	return false, 0, User{}
 }
